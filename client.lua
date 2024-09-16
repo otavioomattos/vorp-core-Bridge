@@ -1,5 +1,25 @@
 RSGCore = exports['rsg-core']:GetCoreObject()
 
+local VORPcore = {}
+
+
+VORPcore.RpcCall = function(name, cb, ...)
+
+    if cb and type(cb) == 'function' then
+        RSGCore.Functions.TriggerCallback(name, function(result)
+            cb(result)
+        end, ...)
+    else
+        local p = promise.new()
+
+        RSGCore.Functions.TriggerCallback(name, function(result)
+            p:resolve(result)
+        end, ...)
+
+        return Citizen.Await(p)
+    end
+end
+
 RegisterNetEvent("vorpcharacter:savenew", function(skin)
     TriggerServerEvent("vorpcharacter:SaveClothes", skin)
 end)
@@ -11,4 +31,13 @@ end)
 AddEventHandler('RSGCore:Client:OnPlayerLoaded', function()
     local PlayerData = RSGCore.Functions.GetPlayerData()
     TriggerEvent("vorp:SelectedCharacter", PlayerData.citizenid)
+end)
+
+
+AddEventHandler('getCore', function(cb)
+    cb(VORPcore)
+end)
+
+AddEventHandler('GetCore', function(cb)
+    cb(VORPcore)
 end)
