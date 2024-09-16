@@ -499,7 +499,9 @@ VORP = {
     maxCharacters = 1,
 
     addRpcCallback = function(name, callback)
-        TriggerEvent("vorp:addNewCallBack", name, callback)
+        RSGCore.Functions.CreateCallback(name, function(source, cb, ...)
+            callback(source, cb, ...) 
+        end)
     end,
 
     getUsers = function()
@@ -605,6 +607,21 @@ RegisterNetEvent("vorpcharacter:SaveClothes", function(skin)
       MySQL.update("UPDATE playerskins SET skin=? WHERE citizenid=?", {json.encode(decoded), Player.PlayerData.citizenid})
     end)
 end)
+
+
+
+
+RegisterNetEvent("vorpcharacter:SaveClothes", function(skin)
+    local src = source
+    local Player = RSGCore.Functions.GetPlayer(src)
+    MySQL.scalar("SELECT skin FROM playerskins WHERE citizenid=?", {Player.PlayerData.citizenid}, function(oldSkin)
+      local decoded = UnJson(oldSkin)
+      table.merge(decoded, skin)
+      MySQL.update("UPDATE playerskins SET skin=? WHERE citizenid=?", {json.encode(decoded), Player.PlayerData.citizenid})
+    end)
+end)
+
+
 
 --exports("GetCore", function()
 --    return VORP
