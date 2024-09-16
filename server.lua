@@ -598,6 +598,28 @@ VORP = {
     end,
 }
 
+VORP.Callback = {
+    Register = function(name, callback)
+        RSGCore.Functions.CreateCallback(name, callback)
+    end,
+
+    TriggerAsync = function(name, source, callback, ...)
+        RSGCore.Functions.TriggerCallback(name, function(result)
+            callback(result)
+        end, ...)
+    end,
+
+    TriggerAwait = function(name, source, ...)
+        local p = promise.new()
+
+        RSGCore.Functions.TriggerCallback(name, function(result)
+            p:resolve(result)
+        end, ...)
+
+        return Citizen.Await(p)
+    end
+}
+
 RegisterNetEvent("vorpcharacter:SaveClothes", function(skin)
     local src = source
     local Player = RSGCore.Functions.GetPlayer(src)
@@ -609,8 +631,6 @@ RegisterNetEvent("vorpcharacter:SaveClothes", function(skin)
 end)
 
 
-
-
 RegisterNetEvent("vorpcharacter:SaveClothes", function(skin)
     local src = source
     local Player = RSGCore.Functions.GetPlayer(src)
@@ -620,8 +640,6 @@ RegisterNetEvent("vorpcharacter:SaveClothes", function(skin)
       MySQL.update("UPDATE playerskins SET skin=? WHERE citizenid=?", {json.encode(decoded), Player.PlayerData.citizenid})
     end)
 end)
-
-
 
 --exports("GetCore", function()
 --    return VORP
