@@ -39,7 +39,7 @@ VORPcore.NotifySimpleTop = function(text, subtitle, duration)
 end
 
 VORPcore.NotifyAvanced = function(text, dict, icon, text_color, duration, quality, showquality)
-    return lib.notify({ title = text, type = 'success', icon = icon, iconAnimation = 'shake', duration = duration})
+    return lib.notify({ title = text, type = 'info', icon = icon, iconAnimation = 'shake', duration = duration})
 end
 
 VORPcore.NotifyCenter = function(text, duration, color)
