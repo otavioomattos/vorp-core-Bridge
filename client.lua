@@ -4,67 +4,67 @@ local VORPcore = {}
 
 VORPcore.Warning = function(text)
     print("^3WARNING: ^7" .. tostring(text) .. "^7")
-end,
+end
 
 VORPcore.Error = function(text)
     print("^1ERROR: ^7" .. tostring(text) .. "^7")
-end,
+end
 
 VORPcore.Success = function(text)
     print("^2SUCCESS: ^7" .. tostring(text) .. "^7")
-end,
+end
 
 VORPcore.NotifyTip = function(text, duration)
     return TriggerEvent('rNotify:Tip', text, duration)
-end,
+end
 
 VORPcore.NotifyLeft = function(title, subtitle, dict, icon, duration, colors)
     TriggerEvent('rNotify:NotifyLeft', title, subtitle, dict, icon, duration)
-end,
+end
 
 VORPcore.NotifyRightTip = function(text, duration)
     return lib.notify({title = text, type = "info", duration = duration})
-end,
+end
 
 VORPcore.NotifyObjective = function(text, duration)
     return lib.notify({title = text, type = "info", duration = duration})
-end,
+end
 
 VORPcore.NotifyTop = function(text, location, duration)
     return TriggerEvent('rNotify:NotifyTop', text, location, duration)
-end,
+end
 
 VORPcore.NotifySimpleTop = function(text, subtitle, duration)
     return lib.notify({ title = text, description = subtitle, type = 'info', duration = duration})
-end,
+end
 
 VORPcore.NotifyAvanced = function(text, dict, icon, text_color, duration, quality, showquality)
     return lib.notify({ title = text, type = 'success', icon = icon, iconAnimation = 'shake', duration = duration})
-end,
+end
 
 VORPcore.NotifyCenter = function(text, duration, color)
     return lib.notify({title = text, type = "info", duration = duration})
-end,
+end
 
 VORPcore.NotifyBottomRight = function(text, duration)
     return lib.notify({title = text, type = "info", duration = duration})
-end,
+end
 
 VORPcore.NotifyFail = function(text, subtitle, duration)
     return lib.notify({title = text, description = subtitle, type = "info", duration = duration})
-end,
+end
 
 VORPcore.NotifyDead = function(title, audioRef, audioName, duration)
     return lib.notify({title = text, type = "info", duration = duration})
-end,
+end
 
 VORPcore.NotifyUpdate = function(title, subtitle, duration)
     return lib.notify({title = text, description = subtitle, type = "info", duration = duration})
-end,
+end
 
 VORPcore.NotifyWarning = function(title, msg, audioRef, audioName, duration)
     return lib.notify({title = title, description = msg, type = "info", duration = duration})
-end,
+end
 
 VORPcore.RpcCall = function(name, cb, ...)
     if cb and type(cb) == 'function' then
