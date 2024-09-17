@@ -532,12 +532,12 @@ VORP = {
 
     NotifyRightTip = function(source, text, duration)
         local _source = source
-
+        return lib.notify(_source, {title = text, type = "info", duration = duration})
     end,
 
     NotifyObjective = function(source, text, duration)
         local _source = source
-
+        return lib.notify(_source, {title = text, type = "info", duration = duration})
     end,
 
     NotifyTop = function(source, text, location, duration)
@@ -547,42 +547,42 @@ VORP = {
 
     NotifySimpleTop = function(source, text, subtitle, duration)
         local _source = source
-
+        return lib.notify(_source, { title = text, description = subtitle, type = 'info', duration = duration})
     end,
 
     NotifyAvanced = function(source, text, dict, icon, text_color, duration, quality, showquality)
         local _source = source
-
+        return lib.notify(_source, { title = text, type = 'success', icon = icon, iconAnimation = 'shake', duration = duration})
     end,
 
     NotifyCenter = function(source, text, duration, color)
         local _source = source
-
+        return lib.notify(_source, {title = text, type = "info", duration = duration})
     end,
 
     NotifyBottomRight = function(source, text, duration)
         local _source = source
-
+        return lib.notify(_source, {title = text, type = "info", duration = duration})
     end,
 
     NotifyFail = function(source, text, subtitle, duration)
         local _source = source
-
+        return lib.notify(_source, {title = text, description = subtitle, type = "info", duration = duration})
     end,
 
     NotifyDead = function(source, title, audioRef, audioName, duration)
         local _source = source
-
+        return lib.notify(_source, {title = text, type = "info", duration = duration})
     end,
 
     NotifyUpdate = function(source, title, subtitle, duration)
         local _source = source
-
+        return lib.notify(_source, {title = text, description = subtitle, type = "info", duration = duration})
     end,
 
     NotifyWarning = function(source, title, msg, audioRef, audioName, duration)
         local _source = source
-
+        return lib.notify(_source, {title = title, description = msg, type = "info", duration = duration})
     end,
 
     dbUpdateAddTables = function(tbl)
